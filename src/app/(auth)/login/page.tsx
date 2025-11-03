@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 const API_BASE_URL = 'http://localhost:3002';
 
-export default function Home() {
+export default function LoginPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
     email: '',

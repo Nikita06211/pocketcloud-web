@@ -6,9 +6,11 @@ import Link from 'next/link';
 
 const API_BASE_URL = 'http://localhost:3002';
 
-export default function Home() {
+export default function SignupPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   });
@@ -29,7 +31,7 @@ export default function Home() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+      const response = await fetch(`${API_BASE_URL}/api/auth/signup`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,18 +42,13 @@ export default function Home() {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.message || 'Invalid credentials. Please try again.');
+        setError(data.message || data.meesage || 'Signup failed. Please try again.');
         setLoading(false);
         return;
       }
 
-      // Store token in localStorage
-      if (data.token) {
-        localStorage.setItem('token', data.token);
-      }
-
-      // Success - redirect to dashboard
-      router.push('/dashboard');
+      // Success - redirect to login or home page
+      router.push('/login');
     } catch (err) {
       setError('An error occurred. Please try again.');
       setLoading(false);
@@ -63,15 +60,15 @@ export default function Home() {
       <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-8 shadow-lg dark:bg-zinc-900">
         <div>
           <h2 className="text-center text-3xl font-bold text-black dark:text-zinc-50">
-            Sign in to your account
+            Create an account
           </h2>
           <p className="mt-2 text-center text-sm text-zinc-600 dark:text-zinc-400">
-            Don't have an account?{' '}
+            Already have an account?{' '}
             <Link
-              href="/signup"
+              href="/login"
               className="font-medium text-zinc-950 hover:underline dark:text-zinc-50"
             >
-              Sign up
+              Sign in
             </Link>
           </p>
         </div>
@@ -84,6 +81,44 @@ export default function Home() {
           )}
 
           <div className="space-y-4">
+            <div>
+              <label
+                htmlFor="firstName"
+                className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              >
+                First Name
+              </label>
+              <input
+                id="firstName"
+                name="firstName"
+                type="text"
+                required
+                value={formData.firstName}
+                onChange={handleChange}
+                className="mt-1 block w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-black placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-zinc-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-50 dark:focus:border-zinc-400"
+                placeholder="John"
+              />
+            </div>
+
+            <div>
+              <label
+                htmlFor="lastName"
+                className="block text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              >
+                Last Name
+              </label>
+              <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                required
+                value={formData.lastName}
+                onChange={handleChange}
+                className="mt-1 block w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-black placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-zinc-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-50 dark:focus:border-zinc-400"
+                placeholder="Doe"
+              />
+            </div>
+
             <div>
               <label
                 htmlFor="email"
@@ -129,7 +164,7 @@ export default function Home() {
               disabled={loading}
               className="flex w-full justify-center rounded-md bg-black px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-50 dark:text-black dark:hover:bg-zinc-200"
             >
-              {loading ? 'Signing in...' : 'Sign in'}
+              {loading ? 'Creating account...' : 'Sign up'}
             </button>
           </div>
         </form>
