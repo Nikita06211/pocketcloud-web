@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 
-const API_BASE_URL = 'http://localhost:3002';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? '';
 
 interface FileItem {
   id: string;
