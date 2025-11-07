@@ -204,19 +204,19 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
       <Navbar />
-      <div className="mx-auto max-w-3xl px-4 py-12">
+      <div className="mx-auto max-w-3xl px-4 py-6 sm:py-12">
         {/* Header */}
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-3">
+        <div className="mb-6 sm:mb-8 text-center">
+          <h1 className="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-2 sm:mb-3">
             Share files, simply
           </h1>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400">
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400">
             Upload any file and get a secure shareable link. Set your own expiration time.
           </p>
         </div>
 
         {/* Main Card */}
-        <div className="rounded-2xl bg-white p-8 shadow-lg dark:bg-zinc-900">
+        <div className="rounded-2xl bg-white p-4 sm:p-8 shadow-lg dark:bg-zinc-900">
           {error && (
             <div className="mb-4 rounded-md bg-red-50 p-3 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
               {error}
@@ -271,10 +271,10 @@ export default function DashboardPage() {
           {viewState === 'file-selected' && selectedFile && (
             <div className="space-y-6">
               {/* File Info */}
-              <div className="flex items-center gap-4 p-4 bg-zinc-50 dark:bg-zinc-800 rounded-lg">
-                <div className="w-12 h-12 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center shrink-0">
+              <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-zinc-50 dark:bg-zinc-800 rounded-lg">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center shrink-0">
                   <svg
-                    className="w-6 h-6 text-teal-600 dark:text-teal-400"
+                    className="w-5 h-5 sm:w-6 sm:h-6 text-teal-600 dark:text-teal-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -288,16 +288,16 @@ export default function DashboardPage() {
                   </svg>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-semibold text-zinc-900 dark:text-zinc-50 truncate">
+                  <p className="font-semibold text-zinc-900 dark:text-zinc-50 truncate text-sm sm:text-base">
                     {selectedFile.name}
                   </p>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                  <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400">
                     {formatFileSize(selectedFile.size)}
                   </p>
                 </div>
                 <button
                   onClick={removeFile}
-                  className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 p-2"
+                  className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 p-1.5 sm:p-2"
                 >
                   <svg
                     className="w-5 h-5"
@@ -335,12 +335,12 @@ export default function DashboardPage() {
                     Link expires in
                   </p>
                 </div>
-                <div className="flex gap-3 mb-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3 mb-3">
                   {[1, 6, 12, 24, 48].map((hours) => (
                     <button
                       key={hours}
                       onClick={() => setSelectedHours(hours)}
-                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                      className={`px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                         selectedHours === hours
                           ? 'bg-teal-500 text-white'
                           : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
@@ -424,16 +424,16 @@ export default function DashboardPage() {
                   value={shareableUrl}
                   className="w-full px-4 py-3 bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-600 dark:text-zinc-400 mb-3"
                 />
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-0">
                   <div className="flex items-center gap-2">
                     <p className="text-sm text-zinc-600 dark:text-zinc-400">
                       Expires in <span className="font-semibold text-zinc-900 dark:text-zinc-50">{expiresAt ? formatTimeRemaining(expiresAt) : ''}</span>
                     </p>
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex gap-2 sm:gap-3">
                     <button
                       onClick={openLink}
-                      className="px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 flex items-center gap-2"
+                      className="flex-1 sm:flex-none px-3 sm:px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-50 dark:hover:bg-zinc-800 flex items-center justify-center gap-2"
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -443,7 +443,7 @@ export default function DashboardPage() {
                     <button
                       id="copy-btn"
                       onClick={() => copyToClipboard(shareableUrl)}
-                      className="px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white rounded-lg text-sm font-medium flex items-center gap-2"
+                      className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white rounded-lg text-sm font-medium flex items-center justify-center gap-2"
                     >
                       <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
