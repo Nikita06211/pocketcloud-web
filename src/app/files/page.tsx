@@ -183,13 +183,13 @@ export default function FilesPage() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-black">
       <Navbar />
-      <div className="mx-auto max-w-7xl px-4 py-8">
+      <div className="mx-auto max-w-7xl px-3 sm:px-4 py-4 sm:py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-2">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-4xl font-bold text-zinc-900 dark:text-zinc-50 mb-2">
             Your Files
           </h1>
-          <p className="text-lg text-zinc-600 dark:text-zinc-400">
+          <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400">
             Manage and share your uploaded files
           </p>
         </div>
@@ -214,10 +214,10 @@ export default function FilesPage() {
         )}
 
         {/* Search and Filter */}
-        <div className="mb-6 flex flex-col sm:flex-row gap-4">
+        <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row gap-3 sm:gap-4">
           <div className="flex-1 relative">
             <svg
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-zinc-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -234,12 +234,12 @@ export default function FilesPage() {
               placeholder="Search files..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
           <div className="relative">
             <svg
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-400 pointer-events-none"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-4 sm:w-5 h-4 sm:h-5 text-zinc-400 pointer-events-none"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -254,25 +254,29 @@ export default function FilesPage() {
             <select
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
-              className="pl-10 pr-10 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none cursor-pointer"
+              className="w-full sm:w-auto pl-9 sm:pl-10 pr-8 sm:pr-10 py-2.5 sm:py-3 text-sm rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none cursor-pointer"
             >
-              {uniqueFileTypes.map((type) => (
+                  {uniqueFileTypes.map((type) => (
                 <option key={type} value={type}>
                   {type}
                 </option>
               ))}
             </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
+              <svg className="h-4 w-4 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
           </div>
-        </div>
-
-        {/* Files List */}
+        </div>        {/* Files List */}
         {loading ? (
-          <div className="py-12 text-center text-zinc-600 dark:text-zinc-400">
-            Loading files...
+          <div className="py-8 sm:py-12 text-center text-zinc-600 dark:text-zinc-400">
+            <div className="inline-block animate-spin rounded-full h-8 w-8 border-2 border-zinc-300 border-t-zinc-600 dark:border-zinc-600 dark:border-t-zinc-300"></div>
+            <p className="mt-4">Loading files...</p>
           </div>
         ) : filteredFiles.length === 0 ? (
-          <div className="py-12 text-center text-zinc-600 dark:text-zinc-400">
-            <p className="mb-2">
+          <div className="py-8 sm:py-12 text-center text-zinc-600 dark:text-zinc-400">
+            <p className="mb-2 text-sm sm:text-base">
               {searchQuery || filterType !== 'All Types'
                 ? 'No files found matching your criteria.'
                 : 'No files uploaded yet.'}
@@ -280,14 +284,14 @@ export default function FilesPage() {
             {!searchQuery && filterType === 'All Types' && (
               <a
                 href="/dashboard"
-                className="text-blue-600 hover:underline dark:text-blue-400"
+                className="text-sm sm:text-base text-blue-600 hover:underline dark:text-blue-400"
               >
                 Upload your first file
               </a>
             )}
           </div>
         ) : (
-          <div className="grid gap-4">
+          <div className="grid gap-3 sm:gap-4">
             {filteredFiles.map((file) => {
               const shareUrl = getShareUrl(file.id);
               // Estimate file size (this would ideally come from API)
@@ -296,47 +300,52 @@ export default function FilesPage() {
               return (
                 <div
                   key={file.id}
-                  className="bg-white dark:bg-zinc-900 rounded-lg p-6 shadow-sm border border-zinc-200 dark:border-zinc-800 hover:shadow-md transition-shadow"
+                  className="bg-white dark:bg-zinc-900 rounded-lg p-4 sm:p-6 shadow-sm border border-zinc-200 dark:border-zinc-800 hover:shadow-md transition-shadow"
                 >
-                  <div className="flex items-start gap-4">
-                    {/* File Icon */}
-                    <div className="shrink-0 w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
-                      {getFileIcon(file.fileType)}
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="flex gap-4">
+                      {/* File Icon */}
+                      <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                        {getFileIcon(file.fileType)}
+                      </div>
+
+                      {/* File Info */}
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-start sm:items-center flex-col sm:flex-row sm:gap-3 mb-2">
+                          <h3 className="text-base sm:text-lg font-semibold text-zinc-900 dark:text-zinc-50 truncate">
+                            {file.name}
+                          </h3>
+                          <span className="mt-1 sm:mt-0 px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-xs font-medium text-zinc-700 dark:text-zinc-300">
+                            {file.fileType.toUpperCase()}
+                          </span>
+                        </div>
+
+                        {/* Metadata */}
+                        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mb-3 sm:mb-4">
+                          <span>{formatFileSize(estimatedSize)}</span>
+                          <span>Created {formatDate(file.createdAt)}</span>
+                          <span>Expires {formatDate(file.expirationTime)}</span>
+                        </div>
+                      </div>
                     </div>
 
-                    {/* File Info */}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50 truncate">
-                          {file.name}
-                        </h3>
-                        <span className="px-2 py-1 rounded bg-zinc-100 dark:bg-zinc-800 text-xs font-medium text-zinc-700 dark:text-zinc-300">
-                          {file.fileType.toUpperCase()}
-                        </span>
-                      </div>
-
-                      {/* Metadata */}
-                      <div className="flex flex-wrap gap-4 text-sm text-zinc-600 dark:text-zinc-400 mb-4">
-                        <span>{formatFileSize(estimatedSize)}</span>
-                        <span>Created {formatDate(file.createdAt)}</span>
-                        <span>Expires {formatDate(file.expirationTime)}</span>
-                      </div>
-
+                    {/* Share Link and Actions */}
+                    <div className="flex flex-col sm:flex-row gap-3">
                       {/* Share Link */}
-                      <div className="flex items-center gap-2">
+                      <div className="flex-1 flex items-center gap-2">
                         <input
                           type="text"
                           readOnly
                           value={shareUrl}
-                          className="flex-1 px-3 py-2 rounded-md bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 text-sm focus:outline-none"
+                          className="flex-1 px-3 py-2 rounded-md bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 text-xs sm:text-sm focus:outline-none"
                         />
                         <button
                           onClick={() => handleCopyUrl(shareUrl)}
-                          className="p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors"
+                          className="shrink-0 p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors"
                           title="Copy link"
                         >
                           <svg
-                            className="w-5 h-5"
+                            className="w-4 h-4 sm:w-5 sm:h-5"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -350,49 +359,49 @@ export default function FilesPage() {
                           </svg>
                         </button>
                       </div>
-                    </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex items-center gap-3 shrink-0">
-                      <button
-                        onClick={() => handleDownload(file)}
-                        className="px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors flex items-center gap-2"
-                        title="Download"
-                      >
-                        <svg
-                          className="w-5 h-5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                      {/* Action Buttons */}
+                      <div className="flex items-center gap-2 sm:gap-3">
+                        <button
+                          onClick={() => handleDownload(file)}
+                          className="flex-1 sm:flex-none px-3 sm:px-4 py-2 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors flex items-center justify-center gap-2 text-xs sm:text-sm"
+                          title="Download"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                          />
-                        </svg>
-                        Download
-                      </button>
-                      <button
-                        onClick={() => handleDelete(file.id)}
-                        className="p-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
-                        title="Delete"
-                      >
-                        <svg
-                          className="w-5 h-5"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                          <svg
+                            className="w-4 h-4 sm:w-5 sm:h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                            />
+                          </svg>
+                          <span className="sm:inline">Download</span>
+                        </button>
+                        <button
+                          onClick={() => handleDelete(file.id)}
+                          className="p-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
+                          title="Delete"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                          />
-                        </svg>
-                      </button>
+                          <svg
+                            className="w-4 h-4 sm:w-5 sm:h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                            />
+                          </svg>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
