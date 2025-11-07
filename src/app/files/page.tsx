@@ -142,13 +142,28 @@ export default function FilesPage() {
       }
 
       // Fetch the file bytes from the presigned URL and trigger a download
-      const fileResp = await fetch(data.presignedUrl);
-      if (!fileResp.ok) {
-        setError('Failed to download file from storage');
+      let blob: Blob | null = null;
+      try {
+        const fileResp = await fetch(data.presignedUrl);
+        if (!fileResp.ok) {
+          throw new Error('Storage response not OK');
+        }
+
+        blob = await fileResp.blob();
+      } catch (fetchErr) {
+        // Likely a CORS issue when fetching the presigned URL from the browser.
+        // Fall back to opening the presigned URL in a new tab so the browser/storage can handle the download.
+        console.warn('Presigned URL fetch failed, falling back to opening URL:', fetchErr);
+        window.open(data.presignedUrl, '_blank');
+        setSuccess('Opened file in new tab (fallback). If you want direct download, enable CORS on the storage bucket.');
+        setTimeout(() => setSuccess(''), 5000);
         return;
       }
 
-      const blob = await fileResp.blob();
+      if (!blob) {
+        setError('Failed to download file from storage');
+        return;
+      }
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -327,7 +342,7 @@ export default function FilesPage() {
                   key={file.id}
                   className="bg-white dark:bg-zinc-900 rounded-lg p-4 sm:p-6 shadow-sm border border-zinc-200 dark:border-zinc-800 hover:shadow-md transition-shadow"
                 >
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex gap-4">
                       {/* File Icon */}
                       <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
@@ -355,9 +370,9 @@ export default function FilesPage() {
                     </div>
 
                     {/* Share Link and Actions */}
-                    <div className="flex flex-col sm:flex-row gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:ml-4 w-full sm:w-auto">
                       {/* Share Link */}
-                      <div className="flex-1 flex items-center gap-2">
+                      <div className="flex-1 flex items-center gap-2 min-w-0">
                         <input
                           type="text"
                           readOnly
