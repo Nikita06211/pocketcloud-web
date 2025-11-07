@@ -51,7 +51,6 @@ export default function Navbar() {
               className="text-lg sm:text-xl font-bold text-black hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
             >
               <span className="sm:inline">PocketCloud</span>
-              <span className="sm:hidden">PC</span>
             </Link>
           </div>
 
