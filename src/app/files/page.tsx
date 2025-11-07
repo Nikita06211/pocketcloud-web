@@ -127,16 +127,41 @@ export default function FilesPage() {
 
   const handleDownload = async (file: FileItem) => {
     try {
+      setError('');
+      // First get the presigned URL from our API
       const response = await fetch(`${API_BASE_URL}/api/files/${file.id}`);
-      if (response.ok) {
-        const data = await response.json();
-        if (data.presignedUrl) {
-          window.open(data.presignedUrl, '_blank');
-        } else {
-          setError('No download URL available');
-        }
+      if (!response.ok) {
+        setError('Failed to get download URL');
+        return;
       }
+
+      const data = await response.json();
+      if (!data.presignedUrl) {
+        setError('No download URL available');
+        return;
+      }
+
+      // Fetch the file bytes from the presigned URL and trigger a download
+      const fileResp = await fetch(data.presignedUrl);
+      if (!fileResp.ok) {
+        setError('Failed to download file from storage');
+        return;
+      }
+
+      const blob = await fileResp.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      // Use the original filename if available
+      a.download = file.name || 'download';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+      setSuccess('Download started');
+      setTimeout(() => setSuccess(''), 3000);
     } catch (err) {
+      console.error('download error', err);
       setError('Failed to download file');
     }
   };
