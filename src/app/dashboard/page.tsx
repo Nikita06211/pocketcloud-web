@@ -40,7 +40,7 @@ export default function DashboardPage() {
 
     // Check file size (10MB max)
     if (file.size > 10 * 1024 * 1024) {
-      setError('File size must be less than 10MB');
+      setError('File is too big');
       return;
     }
 
@@ -55,7 +55,7 @@ export default function DashboardPage() {
     if (!file) return;
 
     if (file.size > 10 * 1024 * 1024) {
-      setError('File size must be less than 10MB');
+      setError('File is too big');
       return;
     }
 
