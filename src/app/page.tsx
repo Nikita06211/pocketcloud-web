@@ -4,10 +4,20 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function LandingPage() {
   const router = useRouter();
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null);
+
+  // Enable smooth scrolling
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
 
   const handleGetStarted = () => {
     const token = localStorage.getItem('token');
@@ -164,7 +174,7 @@ export default function LandingPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               onClick={handleGetStarted}
-              className="group flex items-center gap-2 rounded-lg bg-teal-500 px-8 py-4 text-lg font-medium text-white transition-all duration-200 hover:bg-teal-600 hover:shadow-xl hover:shadow-teal-500/50 hover:scale-105"
+              className="group relative flex items-center gap-2 rounded-lg bg-teal-500 px-8 py-4 text-lg font-medium text-white transition-all duration-200 hover:bg-teal-600 hover:shadow-[0_14px_40px_rgba(20,184,166,0.32)] hover:scale-105"
             >
               Start Sharing
               <svg className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -177,6 +187,28 @@ export default function LandingPage() {
             >
               Learn More
             </a>
+          </div>
+
+          {/* Hero Image with teal glow backdrop */}
+          <div className="mt-16 flex justify-center">
+            <div className="relative w-full max-w-5xl">
+              {/* Decorative teal glow behind the hero image (stronger, layered) */}
+              {/* Outer soft wash */}
+              <div className="pointer-events-none absolute -inset-12 -z-20 rounded-3xl bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.22),transparent_40%)] filter blur-[120px] opacity-80 transition-all duration-300"></div>
+              {/* Inner ring to give a visible halo */}
+              <div className="pointer-events-none absolute -inset-6 -z-10 rounded-2xl bg-gradient-to-r from-teal-400/35 via-transparent to-teal-300/25 filter blur-[36px] opacity-100 transition-all duration-300"></div>
+
+              <div className="relative rounded-2xl overflow-hidden border border-zinc-800 hover:border-teal-500/50 transition-all duration-300 shadow-[0_26px_80px_rgba(20,184,166,0.28)] hover:shadow-[0_30px_140px_rgba(20,184,166,0.42)]">
+                <Image
+                  src="/images/hero.png"
+                  alt="PocketCloud - Share files simply"
+                  width={1200}
+                  height={800}
+                  className="w-full h-auto object-contain"
+                  priority
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -212,59 +244,120 @@ export default function LandingPage() {
 
       {/* How It Works Section */}
       <section id="how-it-works" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.21, 1.11, 0.81, 0.99] }}
+        >
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">How it works</h2>
           <p className="text-xl text-zinc-400">Three simple steps to share your files securely.</p>
-        </div>
+        </motion.div>
 
-        <div className="space-y-24">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12`}
-            >
-              {/* Step Info */}
-              <div className="flex-1">
-                <div className="text-6xl sm:text-7xl font-bold text-teal-500/30 mb-4">{step.number}</div>
-                <h3 className="text-3xl sm:text-4xl font-bold mb-4 text-white">{step.title}</h3>
-                <p className="text-lg text-zinc-400">{step.description}</p>
-              </div>
+        {/* Timeline Container */}
+        <div className="relative">
+          {/* Vertical Timeline Line */}
+          <div className="absolute left-8 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-teal-500/30 hidden md:block"></div>
+          
+          {/* Mobile Timeline Line */}
+          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-teal-500/30 md:hidden"></div>
 
-              {/* Visual Mockup */}
-              <div className="flex-1 w-full">
-                <div className="relative rounded-xl border border-zinc-800 bg-zinc-900 overflow-hidden shadow-2xl hover:border-teal-500/50 transition-all duration-300">
-                  {index === 0 && (
-                    <Image
-                      src="/images/how-it-works/step-1-upload.png"
-                      alt="Step 1: Upload Your File"
-                      width={800}
-                      height={600}
-                      className="w-full h-auto object-contain"
-                      priority={index === 0}
-                    />
-                  )}
-                  {index === 1 && (
-                    <Image
-                      src="/images/how-it-works/step-2-expiration.png"
-                      alt="Step 2: Set Expiration Time"
-                      width={800}
-                      height={600}
-                      className="w-full h-auto object-contain"
-                    />
-                  )}
-                  {index === 2 && (
-                    <Image
-                      src="/images/how-it-works/step-3-share.png"
-                      alt="Step 3: Share Your Link"
-                      width={800}
-                      height={600}
-                      className="w-full h-auto object-contain"
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
+          <div className="space-y-24 md:space-y-32">
+            {steps.map((step, index) => {
+              const ref = useRef(null);
+              const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+              return (
+                <motion.div
+                  key={index}
+                  ref={ref}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    delay: index * 0.2,
+                    ease: [0.21, 1.11, 0.81, 0.99]
+                  }}
+                  className="relative flex flex-col md:flex-row items-start gap-8 md:gap-12"
+                >
+                  {/* Timeline Marker */}
+                  <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-8 z-10">
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
+                      transition={{ 
+                        duration: 0.4, 
+                        delay: index * 0.2 + 0.3,
+                        ease: "easeOut"
+                      }}
+                      className="w-4 h-4 rounded-full bg-teal-500 border-4 border-black shadow-lg shadow-teal-500/50"
+                    ></motion.div>
+                  </div>
+                  {/* Step Content - Alternating Sides */}
+                  <div className={`flex-1 w-full md:pl-20 ${index % 2 === 0 ? 'md:pr-12 md:text-left md:max-w-[45%]' : 'md:pl-12 md:text-left md:ml-auto md:max-w-[45%]'}`}>
+                    <motion.div
+                      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
+                      transition={{ 
+                        duration: 0.6, 
+                        delay: index * 0.2 + 0.1,
+                        ease: [0.21, 1.11, 0.81, 0.99]
+                      }}
+                      className={`${index % 2 === 0 ? 'md:mr-auto md:max-w-[500px] md:text-left' : 'md:ml-auto md:max-w-[500px] md:text-left'}`}
+                    >
+                      <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold text-teal-500/20 md:text-teal-500/30">{step.number}</h1>
+                      <h3 className="text-3xl sm:text-4xl font-bold mb-4 text-white">{step.title}</h3>
+                      <p className="text-lg text-zinc-400">{step.description}</p>
+                    </motion.div>
+                  </div>
+
+                  {/* Visual Mockup - Alternating Sides */}
+                  <motion.div 
+                    className={`flex-1 w-full ${index % 2 === 0 ? 'md:pl-12 md:pr-0' : 'md:pr-12 md:pl-0 md:order-first'}`}
+                    initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30, scale: 0.95 }}
+                    animate={isInView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: index % 2 === 0 ? 30 : -30, scale: 0.95 }}
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: index * 0.2 + 0.15,
+                      ease: [0.21, 1.11, 0.81, 0.99]
+                    }}
+                  >
+                    <div className="relative rounded-xl border border-zinc-800 bg-zinc-900 overflow-hidden shadow-2xl hover:border-teal-500/50 transition-all duration-300">
+                      {index === 0 && (
+                        <Image
+                          src="/images/how-it-works/step-1-upload.png"
+                          alt="Step 1: Upload Your File"
+                          width={800}
+                          height={600}
+                          className="w-full h-auto object-contain"
+                          priority={index === 0}
+                        />
+                      )}
+                      {index === 1 && (
+                        <Image
+                          src="/images/how-it-works/step-2-expiration.png"
+                          alt="Step 2: Set Expiration Time"
+                          width={800}
+                          height={600}
+                          className="w-full h-auto object-contain"
+                        />
+                      )}
+                      {index === 2 && (
+                        <Image
+                          src="/images/how-it-works/step-3-share.png"
+                          alt="Step 3: Share Your Link"
+                          width={800}
+                          height={600}
+                          className="w-full h-auto object-contain"
+                        />
+                      )}
+                    </div>
+                  </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
