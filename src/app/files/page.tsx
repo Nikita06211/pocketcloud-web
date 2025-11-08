@@ -274,7 +274,7 @@ export default function FilesPage() {
               placeholder="Search files..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
             />
           </div>
           <div className="relative">
@@ -294,7 +294,7 @@ export default function FilesPage() {
             <select
               value={filterType}
               onChange={(e) => setFilterType(e.target.value)}
-              className="w-full sm:w-auto pl-9 sm:pl-10 pr-8 sm:pr-10 py-2.5 sm:py-3 text-sm rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none cursor-pointer"
+              className="w-full sm:w-auto pl-9 sm:pl-10 pr-8 sm:pr-10 py-2.5 sm:py-3 text-sm rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 appearance-none cursor-pointer"
             >
                   {uniqueFileTypes.map((type) => (
                 <option key={type} value={type}>
@@ -324,7 +324,7 @@ export default function FilesPage() {
             {!searchQuery && filterType === 'All Types' && (
               <a
                 href="/dashboard"
-                className="text-sm sm:text-base text-blue-600 hover:underline dark:text-blue-400"
+                className="text-sm sm:text-base text-teal-600 hover:underline dark:text-teal-400"
               >
                 Upload your first file
               </a>
@@ -345,7 +345,7 @@ export default function FilesPage() {
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex gap-4">
                       {/* File Icon */}
-                      <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                      <div className="shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center text-teal-600 dark:text-teal-400">
                         {getFileIcon(file.fileType)}
                       </div>
 

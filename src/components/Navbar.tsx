@@ -33,7 +33,7 @@ export default function Navbar() {
           {/* Left - Brand */}
           <div className="flex shrink-0 items-center gap-2">
             <svg
-              className="h-6 w-6 text-blue-500"
+              className="h-6 w-6 text-teal-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -61,7 +61,7 @@ export default function Navbar() {
                 href="/dashboard"
                 className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                   pathname === '/dashboard'
-                    ? 'bg-blue-600 text-white dark:bg-blue-600 dark:text-white'
+                    ? 'bg-teal-500 text-white dark:bg-teal-500 dark:text-white'
                     : 'text-zinc-600 hover:bg-zinc-50 hover:text-black dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50'
                 }`}
               >
@@ -71,7 +71,7 @@ export default function Navbar() {
                 href="/files"
                 className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                   pathname === '/files'
-                    ? 'bg-blue-600 text-white dark:bg-blue-600 dark:text-white'
+                    ? 'bg-teal-500 text-white dark:bg-teal-500 dark:text-white'
                     : 'text-zinc-600 hover:bg-zinc-50 hover:text-black dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50'
                 }`}
               >
@@ -87,7 +87,7 @@ export default function Navbar() {
                 href="/dashboard"
                 className={`rounded-md px-2 py-1 text-sm font-medium transition-colors ${
                   pathname === '/dashboard'
-                    ? 'bg-blue-600 text-white dark:bg-blue-600 dark:text-white'
+                    ? 'bg-teal-500 text-white dark:bg-teal-500 dark:text-white'
                     : 'text-zinc-600 hover:bg-zinc-50 hover:text-black dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50'
                 }`}
               >
@@ -97,7 +97,7 @@ export default function Navbar() {
                 href="/files"
                 className={`rounded-md px-2 py-1 text-sm font-medium transition-colors ${
                   pathname === '/files'
-                    ? 'bg-blue-600 text-white dark:bg-blue-600 dark:text-white'
+                    ? 'bg-teal-500 text-white dark:bg-teal-500 dark:text-white'
                     : 'text-zinc-600 hover:bg-zinc-50 hover:text-black dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50'
                 }`}
               >
@@ -110,7 +110,7 @@ export default function Navbar() {
           <div className="flex items-center shrink-0">
             <button
               onClick={handleLogout}
-              className="rounded-md bg-blue-600 px-2 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:bg-blue-500 dark:hover:bg-blue-600"
+              className="rounded-md bg-teal-500 px-2 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-white transition-colors hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 dark:bg-teal-500 dark:hover:bg-teal-600"
             >
               Logout
             </button>
