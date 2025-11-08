@@ -218,7 +218,7 @@ export default function DashboardPage() {
         {/* Main Card */}
         <div className="rounded-2xl bg-white p-4 sm:p-8 shadow-lg dark:bg-zinc-900">
           {error && (
-            <div className="mb-4 rounded-md bg-red-50 p-3 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
+            <div className="mb-4 rounded-md bg-blue-50 p-3 text-sm text-blue-600 dark:bg-blue-900/20 dark:text-blue-400">
               {error}
             </div>
           )}
@@ -272,9 +272,9 @@ export default function DashboardPage() {
             <div className="space-y-6">
               {/* File Info */}
               <div className="flex items-center gap-3 sm:gap-4 p-3 sm:p-4 bg-zinc-50 dark:bg-zinc-800 rounded-lg">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
                   <svg
-                    className="w-5 h-5 sm:w-6 sm:h-6 text-teal-600 dark:text-teal-400"
+                    className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600 dark:text-blue-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -342,7 +342,7 @@ export default function DashboardPage() {
                       onClick={() => setSelectedHours(hours)}
                       className={`px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                         selectedHours === hours
-                          ? 'bg-teal-500 text-white'
+                          ? 'bg-blue-500 text-white'
                           : 'bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-700'
                       }`}
                     >
@@ -364,7 +364,7 @@ export default function DashboardPage() {
                       }
                     }}
                     placeholder="Custom hours"
-                    className="flex-1 px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                    className="flex-1 px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   />
                   <span className="text-sm text-zinc-600 dark:text-zinc-400">hours</span>
                 </div>
@@ -374,7 +374,7 @@ export default function DashboardPage() {
               <button
                 onClick={handleGenerateLink}
                 disabled={uploading}
-                className="w-full bg-teal-500 hover:bg-teal-600 text-white font-medium py-3 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {uploading ? 'Generating...' : 'Generate Link'}
               </button>
@@ -387,9 +387,9 @@ export default function DashboardPage() {
               {/* File Info */}
               {selectedFile && (
                 <div className="flex items-center gap-4 p-4 bg-zinc-50 dark:bg-zinc-800 rounded-lg">
-                  <div className="w-12 h-12 rounded-lg bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center shrink-0">
                     <svg
-                      className="w-6 h-6 text-teal-600 dark:text-teal-400"
+                      className="w-6 h-6 text-blue-600 dark:text-blue-400"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -443,7 +443,7 @@ export default function DashboardPage() {
                     <button
                       id="copy-btn"
                       onClick={() => copyToClipboard(shareableUrl)}
-                      className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white rounded-lg text-sm font-medium flex items-center justify-center gap-2"
+                      className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg text-sm font-medium flex items-center justify-center gap-2"
                     >
                       <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
