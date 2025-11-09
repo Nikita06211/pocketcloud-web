@@ -153,46 +153,46 @@ export default function LandingPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
-        {/* Radial teal glow below navbar */}
-        <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-[2000px] h-[1200px] bg-[radial-gradient(ellipse_at_center,rgba(20,184,166,0.6),rgba(20,184,166,0.3)_25%,rgba(20,184,166,0.1)_45%,transparent_65%)] filter blur-[150px]" style={{ zIndex: 0 }}></div>
+      <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-32">
+        {/* Radial teal glow below navbar - responsive size */}
+        <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] sm:w-[1200px] sm:h-[800px] md:w-[1600px] md:h-[1000px] lg:w-[2000px] lg:h-[1200px] bg-[radial-gradient(ellipse_at_center,rgba(20,184,166,0.6),rgba(20,184,166,0.3)_25%,rgba(20,184,166,0.1)_45%,transparent_65%)] filter blur-[100px] sm:blur-[120px] md:blur-[140px] lg:blur-[150px]" style={{ zIndex: 0 }}></div>
         <div className="text-center relative z-10">
           {/* Feature Tag */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-4 py-2 mb-8">
-            <svg className="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-3 py-1.5 sm:px-4 sm:py-2 mb-6 sm:mb-8">
+            <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
             </svg>
-            <span className="text-sm font-medium text-teal-400">Fast, Secure, Simple</span>
+            <span className="text-xs sm:text-sm font-medium text-teal-400">Fast, Secure, Simple</span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-white to-zinc-400 bg-clip-text text-transparent px-4">
             Share files, simply
           </h1>
-          <p className="text-xl sm:text-2xl text-zinc-400 mb-10 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl md:text-2xl text-zinc-400 mb-8 sm:mb-10 max-w-2xl mx-auto px-4">
             Upload any file and get a secure shareable link. Set your own expiration time and share with confidence.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4">
             <button
               onClick={handleGetStarted}
-              className="group relative flex items-center gap-2 rounded-lg bg-teal-500 px-8 py-4 text-lg font-medium text-white transition-all duration-200 hover:bg-teal-600 hover:shadow-[0_14px_40px_rgba(20,184,166,0.32)] hover:scale-105"
+              className="group relative flex items-center justify-center gap-2 rounded-lg bg-teal-500 px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium text-white transition-all duration-200 hover:bg-teal-600 hover:shadow-[0_14px_40px_rgba(20,184,166,0.32)] hover:scale-105 w-full sm:w-auto"
             >
               Start Sharing
-              <svg className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </button>
             <a
               href="#how-it-works"
-              className="flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/50 px-8 py-4 text-lg font-medium text-white transition-all duration-200 hover:border-teal-500 hover:bg-zinc-800 hover:scale-105"
+              className="flex items-center justify-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900/50 px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg font-medium text-white transition-all duration-200 hover:border-teal-500 hover:bg-zinc-800 hover:scale-105 w-full sm:w-auto"
             >
               Learn More
             </a>
           </div>
 
           {/* Hero Image with teal glow backdrop */}
-          <div className="mt-16 flex justify-center">
+          <div className="mt-12 sm:mt-16 flex justify-center px-4">
             <div className="relative w-full max-w-5xl">
               {/* Decorative teal glow behind the hero image (reduced) */}
               {/* Outer soft wash */}
@@ -245,27 +245,27 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 z-20">
+      <section id="how-it-works" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 z-20">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, ease: [0.21, 1.11, 0.81, 0.99] }}
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">How it works</h2>
-          <p className="text-xl text-zinc-400">Three simple steps to share your files securely.</p>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 px-4">How it works</h2>
+          <p className="text-base sm:text-lg md:text-xl text-zinc-400 px-4">Three simple steps to share your files securely.</p>
         </motion.div>
 
         {/* Timeline Container */}
         <div className="relative">
           {/* Vertical Timeline Line */}
-          <div className="absolute left-8 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-teal-500/30 hidden md:block"></div>
+          <div className="absolute left-4 sm:left-8 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-teal-500/30 hidden md:block"></div>
           
           {/* Mobile Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-teal-500/30 md:hidden"></div>
+          <div className="absolute left-4 sm:left-8 top-0 bottom-0 w-0.5 bg-teal-500/30 md:hidden"></div>
 
-          <div className="space-y-24 md:space-y-32">
+          <div className="space-y-16 sm:space-y-20 md:space-y-24 lg:space-y-32">
             {steps.map((step, index) => {
               const ref = useRef(null);
               const isInView = useInView(ref, { once: true, margin: '-100px' });
@@ -281,10 +281,10 @@ export default function LandingPage() {
                     delay: index * 0.2,
                     ease: [0.21, 1.11, 0.81, 0.99]
                   }}
-                  className="relative flex flex-col md:flex-row items-start gap-8 md:gap-12"
+                  className="relative flex flex-col md:flex-row items-start gap-6 sm:gap-8 md:gap-12"
                 >
                   {/* Timeline Marker */}
-                  <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 top-8 z-10">
+                  <div className="absolute left-0 sm:left-4 md:left-1/2 md:-translate-x-1/2 top-6 sm:top-8 z-10">
                     <motion.div
                       initial={{ scale: 0, opacity: 0 }}
                       animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
@@ -293,11 +293,11 @@ export default function LandingPage() {
                         delay: index * 0.2 + 0.3,
                         ease: "easeOut"
                       }}
-                      className="w-4 h-4 rounded-full bg-teal-500 border-4 border-black shadow-lg shadow-teal-500/50"
+                      className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-teal-500 border-2 sm:border-4 border-black shadow-lg shadow-teal-500/50"
                     ></motion.div>
                   </div>
                   {/* Step Content - Alternating Sides */}
-                  <div className={`flex-1 w-full md:pl-20 ${index % 2 === 0 ? 'md:pr-12 md:text-left md:max-w-[45%]' : 'md:pl-12 md:text-left md:ml-auto md:max-w-[45%]'}`}>
+                  <div className={`flex-1 w-full pl-8 sm:pl-12 md:pl-20 ${index % 2 === 0 ? 'md:pr-12 md:text-left md:max-w-[45%]' : 'md:pl-12 md:text-left md:ml-auto md:max-w-[45%]'}`}>
                     <motion.div
                       initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
                       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
@@ -306,17 +306,17 @@ export default function LandingPage() {
                         delay: index * 0.2 + 0.1,
                         ease: [0.21, 1.11, 0.81, 0.99]
                       }}
-                      className={`${index % 2 === 0 ? 'md:mr-auto md:max-w-[500px] md:text-left' : 'md:ml-auto md:max-w-[500px] md:text-left'}`}
+                      className={`text-center md:text-left ${index % 2 === 0 ? 'md:mr-auto md:max-w-[500px]' : 'md:ml-auto md:max-w-[500px]'}`}
                     >
-                      <h1 className="text-6xl sm:text-7xl md:text-8xl font-bold text-teal-500/20 md:text-teal-500/30">{step.number}</h1>
-                      <h3 className="text-3xl sm:text-4xl font-bold mb-4 text-white">{step.title}</h3>
-                      <p className="text-lg text-zinc-400">{step.description}</p>
+                      <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-teal-500/20 md:text-teal-500/30 mb-2 sm:mb-3">{step.number}</h1>
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-white">{step.title}</h3>
+                      <p className="text-base sm:text-lg text-zinc-400 px-4 md:px-0">{step.description}</p>
                     </motion.div>
                   </div>
 
                   {/* Visual Mockup - Alternating Sides */}
                   <motion.div 
-                    className={`flex-1 w-full ${index % 2 === 0 ? 'md:pl-12 md:pr-0' : 'md:pr-12 md:pl-0 md:order-first'}`}
+                    className={`flex-1 w-full mt-6 sm:mt-8 md:mt-0 ${index % 2 === 0 ? 'md:pl-12 md:pr-0' : 'md:pr-12 md:pl-0 md:order-first'}`}
                     initial={{ opacity: 0, x: index % 2 === 0 ? 30 : -30, scale: 0.95 }}
                     animate={isInView ? { opacity: 1, x: 0, scale: 1 } : { opacity: 0, x: index % 2 === 0 ? 30 : -30, scale: 0.95 }}
                     transition={{ 
