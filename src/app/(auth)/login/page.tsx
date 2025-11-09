@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import mixpanel from '@/lib/mixpanel';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL ?? '';
 
@@ -48,6 +49,21 @@ export default function LoginPage() {
       // Store token in localStorage
       if (data.token) {
         localStorage.setItem('token', data.token);
+      }
+
+      // Identify user in Mixpanel
+      if (data.user) {
+        mixpanel.identify(data.user.id || data.user._id || formData.email);
+        mixpanel.people.set({
+          $email: data.user.email || formData.email,
+          name: data.user.name || `${data.user.firstName || ''} ${data.user.lastName || ''}`.trim() || undefined,
+        });
+      } else if (formData.email) {
+        // Fallback: identify with email if user object not available
+        mixpanel.identify(formData.email);
+        mixpanel.people.set({
+          $email: formData.email,
+        });
       }
 
       // Success - redirect to dashboard
@@ -117,7 +133,7 @@ export default function LoginPage() {
                 required
                 value={formData.password}
                 onChange={handleChange}
-                className="mt-1 block w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-black placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-zinc-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-50 dark:focus:border-zinc-400"
+                className="mt-1 block w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-black placeholder-zinc-400 shadow-sm focus:border-zinc-500 focus:outline-none focus:ring-zinc-500 dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-50 dark:focus:border-zinc-400 mp-sensitive"
                 placeholder="Enter your password"
               />
             </div>

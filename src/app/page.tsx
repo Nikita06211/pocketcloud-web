@@ -95,7 +95,7 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Navbar */}
       <nav className="border-b border-zinc-800 bg-black/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -154,7 +154,9 @@ export default function LandingPage() {
 
       {/* Hero Section */}
       <section className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
-        <div className="text-center">
+        {/* Radial teal glow below navbar */}
+        <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 w-[2000px] h-[1200px] bg-[radial-gradient(ellipse_at_center,rgba(20,184,166,0.6),rgba(20,184,166,0.3)_25%,rgba(20,184,166,0.1)_45%,transparent_65%)] filter blur-[150px]" style={{ zIndex: 0 }}></div>
+        <div className="text-center relative z-10">
           {/* Feature Tag */}
           <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-4 py-2 mb-8">
             <svg className="w-4 h-4 text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -192,13 +194,13 @@ export default function LandingPage() {
           {/* Hero Image with teal glow backdrop */}
           <div className="mt-16 flex justify-center">
             <div className="relative w-full max-w-5xl">
-              {/* Decorative teal glow behind the hero image (stronger, layered) */}
+              {/* Decorative teal glow behind the hero image (reduced) */}
               {/* Outer soft wash */}
-              <div className="pointer-events-none absolute -inset-12 -z-20 rounded-3xl bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.22),transparent_40%)] filter blur-[120px] opacity-80 transition-all duration-300"></div>
+              <div className="pointer-events-none absolute -inset-12 -z-20 rounded-3xl bg-[radial-gradient(ellipse_at_center,rgba(16,185,129,0.05),transparent_40%)] filter blur-[120px] opacity-20 transition-all duration-300"></div>
               {/* Inner ring to give a visible halo */}
-              <div className="pointer-events-none absolute -inset-6 -z-10 rounded-2xl bg-gradient-to-r from-teal-400/35 via-transparent to-teal-300/25 filter blur-[36px] opacity-100 transition-all duration-300"></div>
+              <div className="pointer-events-none absolute -inset-6 -z-10 rounded-2xl bg-gradient-to-r from-teal-400/8 via-transparent to-teal-300/5 filter blur-[36px] opacity-30 transition-all duration-300"></div>
 
-              <div className="relative rounded-2xl overflow-hidden border border-zinc-800 hover:border-teal-500/50 transition-all duration-300 shadow-[0_26px_80px_rgba(20,184,166,0.28)] hover:shadow-[0_30px_140px_rgba(20,184,166,0.42)]">
+              <div className="relative rounded-2xl overflow-hidden border border-zinc-800 shadow-[0_26px_80px_rgba(20,184,166,0.15)]">
                 <Image
                   src="/images/hero.png"
                   alt="PocketCloud - Share files simply"
@@ -214,7 +216,7 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section id="features" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+      <section id="features" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 z-20">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold mb-4">Everything you need to share files</h2>
           <p className="text-xl text-zinc-400">Built with simplicity and security in mind. Share with confidence.</p>
@@ -243,7 +245,7 @@ export default function LandingPage() {
       </section>
 
       {/* How It Works Section */}
-      <section id="how-it-works" className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+      <section id="how-it-works" className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 z-20">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
