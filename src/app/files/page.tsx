@@ -225,7 +225,7 @@ export default function FilesPage() {
       <Navbar />
       <div className="mx-auto w-full px-3 sm:px-4 py-3 sm:py-6">
         {/* Header */}
-        <div className="mb-3 sm:mb-6">
+        <div className="mb-3 sm:mb-6 sm:text-center max-w-2xl sm:max-w-3xl lg:max-w-4xl mx-auto">
           <h1 className="text-xl sm:text-3xl font-bold text-zinc-900 dark:text-zinc-50 mb-1 sm:mb-2">
             Your Files
           </h1>
@@ -368,22 +368,22 @@ export default function FilesPage() {
                     </div>
 
                     {/* Share Link and Actions */}
-                    <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:ml-4 w-full sm:w-auto">
-                      {/* Share Link */}
-                      <div className="flex items-center gap-1 sm:gap-2 min-w-0">
+                    <div className="flex flex-col gap-2 w-full sm:w-auto">
+                      {/* Share Link and Copy */}
+                      <div className="flex items-center gap-1 min-w-0 w-full">
                         <input
                           type="text"
                           readOnly
                           value={shareUrl}
-                          className="flex-1 px-2 sm:px-3 py-1.5 sm:py-2 rounded-md bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 text-xs sm:text-sm focus:outline-none"
+                          className="w-full min-w-0 px-2 py-1.5 rounded-md bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-600 dark:text-zinc-400 text-xs focus:outline-none"
                         />
                         <button
                           onClick={() => handleCopyUrl(shareUrl)}
-                          className="shrink-0 p-1.5 sm:p-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                          className="shrink-0 p-1.5 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-50 transition-colors rounded-md hover:bg-zinc-100 dark:hover:bg-zinc-800"
                           title="Copy link"
                         >
                           <svg
-                            className="w-4 h-4 sm:w-5 sm:h-5"
+                            className="w-4 h-4"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -399,14 +399,14 @@ export default function FilesPage() {
                       </div>
 
                       {/* Action Buttons */}
-                      <div className="flex items-center gap-2">
+                      <div className="grid grid-cols-2 sm:flex items-center gap-1 sm:gap-2 w-full sm:w-auto">
                         <button
                           onClick={() => handleDownload(file)}
-                          className="flex-1 sm:flex-none px-3 py-1.5 sm:py-2 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors flex items-center justify-center gap-1.5 text-xs sm:text-sm"
+                          className="flex items-center justify-center gap-1 px-2 py-1.5 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-xs"
                           title="Download"
                         >
                           <svg
-                            className="w-3.5 h-3.5 sm:w-4 sm:h-4"
+                            className="w-3.5 h-3.5"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -422,11 +422,11 @@ export default function FilesPage() {
                         </button>
                         <button
                           onClick={() => handleDelete(file.id)}
-                          className="p-1.5 sm:p-2 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors"
+                          className="flex items-center justify-center gap-1 px-2 py-1.5 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-md transition-colors text-xs"
                           title="Delete"
                         >
                           <svg
-                            className="w-3.5 h-3.5 sm:w-4 sm:h-4"
+                            className="w-3.5 h-3.5"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -438,6 +438,7 @@ export default function FilesPage() {
                               d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                             />
                           </svg>
+                          <span>Delete</span>
                         </button>
                       </div>
                     </div>

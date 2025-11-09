@@ -50,8 +50,7 @@ export default function Navbar() {
               href="/dashboard"
               className="text-base sm:text-xl font-bold text-black hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
             >
-              <span className="inline">PC</span>
-              <span className="hidden sm:inline">ocketCloud</span>
+              <span className="hidden sm:inline">PocketCloud</span>
             </Link>
           </div>
 
