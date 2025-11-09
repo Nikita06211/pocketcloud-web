@@ -31,9 +31,9 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           {/* Left - Brand */}
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <svg
-              className="h-6 w-6 text-teal-400"
+              className="h-5 w-5 sm:h-6 sm:w-6 text-teal-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -48,9 +48,10 @@ export default function Navbar() {
             </svg>
             <Link
               href="/dashboard"
-              className="text-lg sm:text-xl font-bold text-black hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
+              className="text-base sm:text-xl font-bold text-black hover:text-zinc-700 dark:text-zinc-50 dark:hover:text-zinc-200"
             >
-              <span className="sm:inline">PocketCloud</span>
+              <span className="inline">PC</span>
+              <span className="hidden sm:inline">ocketCloud</span>
             </Link>
           </div>
 
@@ -81,11 +82,11 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Navigation */}
-          <div className="flex sm:hidden items-center justify-center flex-1 px-2">
+          <div className="flex sm:hidden items-center justify-center flex-1">
             <div className="flex space-x-1">
               <Link
                 href="/dashboard"
-                className={`rounded-md px-2 py-1 text-sm font-medium transition-colors ${
+                className={`rounded-md px-2 py-1 text-xs font-medium transition-colors ${
                   pathname === '/dashboard'
                     ? 'bg-teal-500 text-white dark:bg-teal-500 dark:text-white'
                     : 'text-zinc-600 hover:bg-zinc-50 hover:text-black dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50'
@@ -95,7 +96,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/files"
-                className={`rounded-md px-2 py-1 text-sm font-medium transition-colors ${
+                className={`rounded-md px-2 py-1 text-xs font-medium transition-colors ${
                   pathname === '/files'
                     ? 'bg-teal-500 text-white dark:bg-teal-500 dark:text-white'
                     : 'text-zinc-600 hover:bg-zinc-50 hover:text-black dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-50'
